@@ -18,56 +18,29 @@ struct computer{
 
 struct lab{
     int maphong;
+    string chucnang;
     computer a[50];
 };
 
-void nhapLab(lab &x, int n) {
-    cout << "nhap ma phong: ";
-    cin >> x.maphong;
+void showlabinfo(lab &L) {
+  lab a;
 
-    for (int i = 0; i < n; i++) {
-        cout << "\ncomputer " << i + 1 << endl;
+  cout << "Ma phong: ";
+  cin >> a.maphong;
 
-        cout << "id: ";
-        cin >> x.a[i].id;
+  cout << "Chuc nang: ";
+  cin >> a.chucnang;
+};
 
-        cout << "name: ";
-        cin >> x.a[i].name;
 
-        cout << "hdh: ";
-        cin >> x.a[i].hdh;
+struct taikhoan {
+  string username[50];
+  string password[50];
+};
 
-        cout << "username: ";
-        cin >> x.a[i].username;
 
-        cout << "pwd: ";
-        cin >> x.a[i].pwd;
 
-        cout << "model: ";
-        cin >> x.a[i].model;
-
-        cout << "year: ";
-        cin >> x.a[i].year;
-    }
-}
-
-void xuatLab(lab x, int n) {
-    cout << "\nma phong: " << x.maphong << endl;
-
-    for (int i = 0; i < n; i++) {
-        cout << "\ncomputer " << i + 1 << endl;
-
-        cout << "id: " << x.a[i].id << endl;
-        cout << "name: " << x.a[i].name << endl;
-        cout << "hdh: " << x.a[i].hdh << endl;
-        cout << "username: " << x.a[i].username << endl;
-        cout << "pwd: " << x.a[i].pwd << endl;
-        cout << "model: " << x.a[i].model << endl;
-        cout << "year: " << x.a[i].year << endl;
-    }
-}
-
-void getcomputerInfo1(computer x[], int n){
+void inputcomputerInfo(computer x[], int n){
      for (int i = 0; i < n; i++)
     {
         cout << "\nflower " << i + 1 << endl;
@@ -98,7 +71,7 @@ void getcomputerInfo1(computer x[], int n){
     }
 }
 
-void getcomputerInfo2(int id, int n, computer x[]){
+void getcomputerInfo1(int id, int n, computer x[]){
      for (int i = 0; i < n; i++)
     {
        if(x[i].id == id){
@@ -109,8 +82,10 @@ void getcomputerInfo2(int id, int n, computer x[]){
         cout << x[i].pwd;
         cout << x[i].model;
         cout << x[i].year;
+        return;
        }
     }
+    cout << "Khong tim thay computer\n";
 }
 
 computer getcomputerInfo(int id, int n, computer x[]){
@@ -120,40 +95,89 @@ computer getcomputerInfo(int id, int n, computer x[]){
         return x[i];
        }
     }
+    computer a;
+    a.id = -1;
+    a.name = "Khong tim thay";
+
+    return a;
+}
+
+computer* getcomputers(computer x[]) {
+    return x;
+}
+
+void gettaikhoan(int id, int n, computer x[]) {
+    for (int i = 0; i < n; i++) {
+        if (x[i].id == id) {
+            cout << "Username: " << x[i].username << endl;
+            cout << "Password: " << x[i].pwd << endl;
+            return;
+        }
+    }
+
+    cout << "Khong tim thay computer!\n";
 }
 
 int main(){
     computer x[50];
     int n;
+
     cout << "nhap n: ";
     cin >> n;
 
+
+    
     lab L;
 
-    cout << "nhap lab: ";
-    nhapLab(L, n);
+    cout << "\n=== NHAP LAB ===\n";
+    showlabinfo(L);
 
-    cout << "xuat lab: ";
-    xuatLab(L, n);
 
-   
+    // Nhap computer
+    cout << "\n NHAP COMPUTER \n";
+    inputcomputerInfo(x, n);
 
-    getcomputerInfo1(x, n);
 
+    // 1. Tim va in computer theo ID
     int id;
-    cout <<"nhap id: ";
+
+    cout << "\nNhap id can tim: ";
     cin >> id;
-    getcomputerInfo2(id, n, x);
+
+    getcomputerInfo1(id, n, x);
+
+
+    // 2. Tim va tra ve computer
+    cout << "\nNhap id de tra ve Computer: ";
+    cin >> id;
 
     computer a = getcomputerInfo(id, n, x);
-        cout << a.name;
-        cout << a.hdh;
-        cout << a.username;
-        cout << a.pwd;
-        cout << a.model;
-        cout << a.year;
+
+    cout << "\n=== COMPUTER DUOC TRA VE ===\n";
+    cout << "Name: " << a.name << endl;
+    cout << "Model: " << a.model << endl;
+    cout << "Year: " << a.year << endl;
+
+
+    // 3. Tra ve con tro mang
+    cout << "\n=== DANH SACH COMPUTER ===\n";
+
+    computer* list = getcomputers(x);
+
+    for (int i = 0; i < n; i++) {
+        cout << i + 1 << ". ";
+        cout << "ID: " << list[i].id << " | ";
+        cout << "Name: " << list[i].name << " | ";
+        cout << "HDH: " << list[i].hdh << endl;
+    }
+
 
     
-    
+    cout << "\nNhap id de lay tai khoan: ";
+    cin >> id;
 
+    gettaikhoan(id, n, x);
+    
+    
+    return 0;
 }
