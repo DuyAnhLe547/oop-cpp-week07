@@ -3,18 +3,6 @@
 using namespace std;
 
 
-struct lab{
-
-};
-
-void getlabInfo(){
-
-}
-
-void showlabInfo(){
-
-}
-
 
 struct computer{
     int id;
@@ -27,6 +15,57 @@ struct computer{
 
 
 };
+
+struct lab{
+    int maphong;
+    computer a[50];
+};
+
+void nhapLab(lab &x, int n) {
+    cout << "nhap ma phong: ";
+    cin >> x.maphong;
+
+    for (int i = 0; i < n; i++) {
+        cout << "\ncomputer " << i + 1 << endl;
+
+        cout << "id: ";
+        cin >> x.a[i].id;
+
+        cout << "name: ";
+        cin >> x.a[i].name;
+
+        cout << "hdh: ";
+        cin >> x.a[i].hdh;
+
+        cout << "username: ";
+        cin >> x.a[i].username;
+
+        cout << "pwd: ";
+        cin >> x.a[i].pwd;
+
+        cout << "model: ";
+        cin >> x.a[i].model;
+
+        cout << "year: ";
+        cin >> x.a[i].year;
+    }
+}
+
+void xuatLab(lab x, int n) {
+    cout << "\nma phong: " << x.maphong << endl;
+
+    for (int i = 0; i < n; i++) {
+        cout << "\ncomputer " << i + 1 << endl;
+
+        cout << "id: " << x.a[i].id << endl;
+        cout << "name: " << x.a[i].name << endl;
+        cout << "hdh: " << x.a[i].hdh << endl;
+        cout << "username: " << x.a[i].username << endl;
+        cout << "pwd: " << x.a[i].pwd << endl;
+        cout << "model: " << x.a[i].model << endl;
+        cout << "year: " << x.a[i].year << endl;
+    }
+}
 
 void getcomputerInfo1(computer x[], int n){
      for (int i = 0; i < n; i++)
@@ -89,6 +128,16 @@ int main(){
     cout << "nhap n: ";
     cin >> n;
 
+    lab L;
+
+    cout << "nhap lab: ";
+    nhapLab(L, n);
+
+    cout << "xuat lab: ";
+    xuatLab(L, n);
+
+   
+
     getcomputerInfo1(x, n);
 
     int id;
@@ -104,5 +153,7 @@ int main(){
         cout << a.model;
         cout << a.year;
 
+    
+    
 
 }
