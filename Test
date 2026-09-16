@@ -1,0 +1,108 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+struct lab{
+
+};
+
+void getlabInfo(){
+
+}
+
+void showlabInfo(){
+
+}
+
+
+struct computer{
+    int id;
+    string name;
+    string hdh;
+    string username;
+    int pwd;
+    string model;
+    int year;
+
+
+};
+
+void getcomputerInfo1(computer x[], int n){
+     for (int i = 0; i < n; i++)
+    {
+        cout << "\nflower " << i + 1 << endl;
+
+        cout << "id: ";
+        cin >> x[i].id;
+
+        cout << "name: ";
+        cin >> x[i].name;
+
+        cout << "hdh: ";
+        cin >> x[i].hdh;
+
+        cout << "username: ";
+        cin >> x[i].username;
+
+        cout << "pwd: ";
+        cin >> x[i].pwd;
+
+        cout << "model: ";
+        cin >> x[i].model;
+
+        cout << "year: ";
+        cin >> x[i].year;
+
+
+        
+    }
+}
+
+void getcomputerInfo2(int id, int n, computer x[]){
+     for (int i = 0; i < n; i++)
+    {
+       if(x[i].id == id){
+        cout << "\nflower " << i + 1 << endl;
+        cout << x[i].name;
+        cout << x[i].hdh;
+        cout << x[i].username;
+        cout << x[i].pwd;
+        cout << x[i].model;
+        cout << x[i].year;
+       }
+    }
+}
+
+computer getcomputerInfo(int id, int n, computer x[]){
+    for (int i = 0; i < n; i++)
+    {
+       if(x[i].id == id){
+        return x[i];
+       }
+    }
+}
+
+int main(){
+    computer x[50];
+    int n;
+    cout << "nhap n: ";
+    cin >> n;
+
+    getcomputerInfo1(x, n);
+
+    int id;
+    cout <<"nhap id: ";
+    cin >> id;
+    getcomputerInfo2(id, n, x);
+
+    computer a = getcomputerInfo(id, n, x);
+        cout << a.name;
+        cout << a.hdh;
+        cout << a.username;
+        cout << a.pwd;
+        cout << a.model;
+        cout << a.year;
+
+
+}
